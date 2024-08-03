@@ -1,11 +1,17 @@
 import requests
 from requests.auth import HTTPBasicAuth
+import os
+from dotenv import load_dotenv
+
+
+
 
 class Api_Request:
     def __init__(self):
         self.method = 'get'
         self.BASE_URL = 'https://api.brawlstars.com/v1/'
-        self.API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImI5NzgwZDZlLTBkY2MtNGFjYS1iYTQyLWJjMmQwZTZiNjUzOCIsImlhdCI6MTcyMTk0MjMxNywic3ViIjoiZGV2ZWxvcGVyLzVkNTIxNDRmLWMyNWItOGM0MS1kNzk5LWI3OWYyY2JkNDU2MyIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNzMuMjQ2LjkxLjQ1Il0sInR5cGUiOiJjbGllbnQifV19.Y4W3kLRVfnbDLIeUXAgQM6NgPPaDyVqkoGkdPYV-hlMxNzZccZyb_AvrZRRveJNxI87ToWEK7Fay7TUlLUm_AA'
+        load_dotenv()
+        self.API_KEY = os.getenv('BS_API_KEY')
         self.player_tag = ''
         self.endpoint = f'players/%23{self.player_tag}'
 
