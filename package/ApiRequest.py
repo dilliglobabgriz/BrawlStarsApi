@@ -3,9 +3,6 @@ from requests.auth import HTTPBasicAuth
 import os
 from dotenv import load_dotenv
 
-
-
-
 class Api_Request:
     def __init__(self):
         self.method = 'get'
