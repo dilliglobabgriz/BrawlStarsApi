@@ -18,9 +18,9 @@ class Api_Request:
            'Accept': 'application/json'
         }
 
-    # Returns a JSON object
-    def get_player_info(self) -> Dict[str, Any]:
-        endpoint: str = self.get_player_info_endpoint()
+    # Calls BS Api
+    # Returns JSON object helper function
+    def call_api(self, endpoint: str):
         response = requests.get(self.BASE_URL + endpoint, headers=self.headers)
 
         if response.status_code == 200:
@@ -29,6 +29,16 @@ class Api_Request:
             return data
         else:
             raise Exception(f"Failed to retrieve data: {response.status_code}\n{response.text}")
+
+    # Returns a JSON object
+    def get_player_info(self) -> Dict[str, Any]:
+        player_endpoint: str = self.get_player_info_endpoint()
+        return self.call_api(player_endpoint)
+    
+    def get_general_brawler_info(self) -> List[Dict[str, Any]]:
+        brawlers_endpoint: str = 'brawlers'
+        brawlers_json = self.call_api(brawlers_endpoint)
+        return brawlers_json.get('items')
         
     def get_all_brawlers_info(self) -> List[Dict[str, Any]]:
         player_data: Dict[str, Any] = self.get_player_info()
@@ -76,4 +86,18 @@ class Api_Request:
         for brawler in brawlers:
             gadget_sum += len(brawler.get('gadgets'))
         return gadget_sum
+    
+    def get_total_brawlers(self) -> int:
+        return len(self.get_general_brawler_info())
+        
+    
+    def get_max_star_powers(self) -> int:
+        star_power_total: int = self.get_total_brawlers() * 2
+        return star_power_total
+    
+    # Currently exact same logic as max star powers
+    # Seperate functions in case third star powers or gadgets are added
+    def get_max_gadgets(self) -> int:
+        gadget_total: int = self.get_total_brawlers() * 2
+        return gadget_total
         

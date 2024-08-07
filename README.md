@@ -9,6 +9,7 @@
     <li><span>Add methods to pull club, general bralwer, and global rankings information</span></li>
     <li><span>Add frontend so users dont have to interact through terminal</span></li>
     <li><span>Determine how to get brawler masteries</span></li>
+    <li><span>Implement and test get total brawlers method</span></li>
 </ul>
 <br>
 <h2>Tests</h2>
