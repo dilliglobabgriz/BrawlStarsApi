@@ -18,8 +18,8 @@ class Api_Request:
            'Accept': 'application/json'
         }
 
-    # Returns a JSON object or empty dict
-    def get_player_info(self):
+    # Returns a JSON object
+    def get_player_info(self) -> Dict[str, Any]:
         endpoint = self.get_player_info_endpoint()
         response = requests.get(self.BASE_URL + endpoint, headers=self.headers)
 
@@ -43,7 +43,7 @@ class Api_Request:
         raise Exception(f"Could not find {brawler_name}")
 
     
-    def get_player_info_endpoint(self):
+    def get_player_info_endpoint(self) -> str:
         return f'players/%23{self.player_tag}'
     
     def set_endpoint(self, endpoint):
@@ -53,5 +53,5 @@ class Api_Request:
         self.player_tag = tag
         self.set_endpoint(tag)
     
-    def get_player_tag(self):
+    def get_player_tag(self) -> str:
         return self.player_tag
