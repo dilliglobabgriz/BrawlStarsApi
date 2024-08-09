@@ -23,13 +23,19 @@ def all_brawlers() -> None:
     print(len(a.get_general_brawler_info()))
 
 
-def main():
+def isaac_vs_grant():
     print("--- Isaac's account progress ---")
     print(account_progress())
     print(f"\n--- Grants's account progress ---")
     print(account_progress('99GL8LLY'))
     #getUserInput()
     
+def top_10_info():
+    a = Api_Request()
+    return a.get_leaderboard_player_tags(3)
+
+def main():
+    print(top_10_info())
 
 if __name__ == '__main__':
     main()
