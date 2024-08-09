@@ -32,10 +32,11 @@ def isaac_vs_grant():
     
 def top_10_info():
     a = Api_Request()
-    return a.get_leaderboard_player_tags(3)
+    return a.get_leaderboard_player_tags(100)
 
 def main():
-    print(top_10_info())
+    var = '#GGGL8900' in top_10_info()
+    print(var == False)
 
 if __name__ == '__main__':
     main()
