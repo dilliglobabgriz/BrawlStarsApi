@@ -9,12 +9,13 @@ def getUserInput():
     brawler_info = a.get_brawler_info(brawler)
     print(brawler_info.get(info))
 
-def account_progress() -> str:
+def account_progress(player_id: str='GGGL8900') -> str:
     a = Api_Request()
-    a.set_player_tag('GGGL8900')
-    gadget_ratio: str = f'{a.get_total_gadgets()}/{a.get_max_gadgets}'
-    sp_ratio: str = f'{a.get_total_star_powers()}/{a.get_max_star_powers}' 
-    progress_message: str = f'Gadgets: {gadget_ratio}\nStar Powers: {sp_ratio}'
+    a.set_player_tag(player_id)
+    gadget_ratio: str = f'{a.get_total_gadgets()}/{a.get_max_gadgets()}'
+    sp_ratio: str = f'{a.get_total_star_powers()}/{a.get_max_star_powers()}' 
+    gears: str = f'{a.get_total_gears()}'
+    progress_message: str = f'Gadgets: {gadget_ratio}\nStar Powers: {sp_ratio}\nGears: {gears}'
     return progress_message
 
 def all_brawlers() -> None:
@@ -23,8 +24,11 @@ def all_brawlers() -> None:
 
 
 def main():
-    #print(account_progress())
-    all_brawlers()
+    print("--- Isaac's account progress ---")
+    print(account_progress())
+    print(f"\n--- Grants's account progress ---")
+    print(account_progress('99GL8LLY'))
+    #getUserInput()
     
 
 if __name__ == '__main__':

@@ -101,3 +101,11 @@ class Api_Request:
         gadget_total: int = self.get_total_brawlers() * 2
         return gadget_total
         
+    def get_total_trophies(self) -> int:
+        player_info = self.get_player_info()
+        return player_info.get('trophies')
+
+    # Could add name color as feature
+    def get_gamer_tag(self) -> str:
+        player_info = self.get_player_info()
+        return player_info.get('name')
