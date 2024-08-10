@@ -1,4 +1,5 @@
 from ApiRequest import Api_Request
+from typing import List
 
 def getUserInput():
     player_tag = input('Player Tag: #')
@@ -32,11 +33,16 @@ def isaac_vs_grant():
     
 def top_10_info():
     a = Api_Request()
-    return a.get_leaderboard_player_tags(100)
+    top_ten_tags: List[str] = a.get_leaderboard_player_tags()
+    player_names: List[str] = []
+    for tag in top_ten_tags:
+        a.set_player_tag(tag[1:])
+        player_names.append(a.get_gamer_tag())
+    return player_names
+
 
 def main():
-    var = '#GGGL8900' in top_10_info()
-    print(var == False)
+    print(top_10_info())
 
 if __name__ == '__main__':
     main()
